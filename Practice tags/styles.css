@@ -1,0 +1,33 @@
+h1 {
+    color: red;
+    text-align: center;
+    font-size: 10vh;
+}
+
+div{
+    text-align:center;
+ 
+}
+
+div table{
+    border: 10px solid black;
+    border-collapse: collapse;
+
+} 
+
+td, th{
+    border: 1px solid black;
+ 
+}
+
+#abcd{
+    color: blue;
+}
+
+button{
+    background-color: red;
+}
+
+button:hover{
+    background-color: orange;
+}

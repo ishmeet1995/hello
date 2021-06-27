@@ -1,0 +1,214 @@
+1. <!DOCTYPE HTML>
+	It tells browser what version of HTML are we using as depending on the version of HTML certain elements of webpages are rendered differently. Above tells browser that we are working with HTML 5
+
+2. To specify which language is the webpage written in we use lang attribute of HTML Tag. This helps SEO to determine proper results in a given language 
+		<HTML lang='en'> </HTML>
+
+3. To add a Datalist i.e dropdown in which you can search elements- 
+	<div id="Datalist">
+        <input name="country" list="countries" placeholder="Country">
+        <datalist id="countries">
+            <option value="India">
+            <option value="USA">
+        </datalist>
+    </div>
+
+    Keep in mind that the name of te list in INPUT tag and ID of Datalist should be same. Datalist specifies Pre-Defined options for Input element and also provides autocomplete feature.
+
+4. Types of styling
+	a. Inline Styling (Disadvantage - Have to repeat style code for every element)
+			<h1 style="color: blue; text-align: center;> Welcome to my Webpage!</h1>
+
+	b. Head Styling (Advantage - No Repetition. Disadvantage - Multiple web pages still need the same definition explicitly)
+			<head>
+        		<title>Style</title>
+        		<style>
+        		    h1 {
+        		        color: blue; 
+        		        text-align: center;
+        		    }
+        		</style>
+   			</head>
+   		Notice that we are defining all styling within STYLE element within HEAD.
+
+   	c. Style sheet
+   		In here we create link of our HTML element to an external style sheet that can be used by many other webpages of our project.
+   		We provide info regarding style sheet using 'link' element in 'head'.
+   		
+   	     <head>
+        	<title>Style</title>
+        	<link rel="stylesheet" href="styles.css">
+    	 </head>
+
+
+5. CSS Selectors
+	a. To look for unique selector use this in Google Console - tag[attribute]
+		eg textarea[id="textarea-text"]
+
+	b. Wildcards 
+						Consider 
+								Element1 = id="Test_1"
+								Element2 = id="1_Test"
+								Element3 = id="1_Test_1"
+								
+
+			i. Starts with (^) - This allows us to check if any attribute starts with a specific string.
+				Example - a[id^="Test"]
+				Result - Element1 is selected.
+
+			ii. Contains (*) - This allows us to check if any attribute contains a specific string.
+				Example - a[id*="Test"]
+				Result - Element1, Element2, Element3 are selected. 
+
+			iii. Ends with ($) - This allows us to check is any attribute ends with a specific string.
+				Example - a[id$="Test"]
+				Result - Element2 is selected.
+
+
+
+
+6. CSS Notes- 
+		a. Use # to refer ID attribute
+					#ID1{}
+		b. Use . to refer Class attribute
+					.Class1{}
+		c. Specificity Order
+					Inline > ID > Class > Elements
+		d. To select multiple elements - 
+					td, th, h1, h2 {}
+		e. Specifying attributes
+					a[href='https:google.com']{}
+		f. To set pic as background and center align it 
+					background: url('../Img/model-1.jpg') center top;
+		g. By default '<a>' does not inherit the color of the parent. We need to add in this line in CSS
+				a {color: inherit; }
+		h. Removing Underlines from a Hyperlink, add following in CSS - 
+				text-decoration: None
+		i. Sudo Eelements - These are elements that are created in CSS to define something around the main element defined in HTML.
+					h1::before {
+					  content: url(smiley.gif);
+					}
+			Above will add a smiley gif before our H1 text.
+					`
+7. SASS Notes
+
+`		a. Compiling files to generate CSS
+					sass variables.scss:variables.css
+		b. Adding a watch to real time compile SCSS file
+					sass --watch variables.scss:variables.css
+		c. Creating and using Variables
+					$color: springgreen;
+
+					div{
+					    background-color: $color;
+					    font-size:20px;
+					}
+		d. Nesting within Elements - In typical CSS if there is a P that exists within DIV we do this -
+					 DIV > P{}
+			In case of SASS we can do this -
+					$color: springgreen;
+
+					div{
+					    background-color: $color;
+					    font-size:20px;
+					
+					    p {
+					        color: red;
+					    }
+					}
+
+		e. Defining a map or dictionary -
+				Declare a variable - 
+							$font-weights: (
+										    "regular": 400,
+										    "medium": 500,
+										    "bold": 800
+										);
+
+				Call the variable using map-get() function
+							font-weight: map-get($map: $font-weights, $key: bold)
+
+					No need to actually providing '$map' and '$key'
+
+		f. Creating a lookup file.
+				All scss files defined with a starting '_' means that SCSS compiler won't be compiling them to css files. These files are there for defining lookup data
+
+			How to use it?
+				1. You can declare a file with all the variable information or css information.
+				2. Use Import to import that file into your current file - 
+									@import "./file_name_wihout_leading_underscore";
+				3. CSS info will be used directly and variables can be accessed as well now.
+
+		g. Creating a function:
+				@function weight($weightName){
+				    @return map-get($font-weights, $weightName)
+				}
+
+			Calling function
+				font-weight: weight(medium);
+
+		h. Defining a mixin : This is used to define a set of codes that are to be referred multiple times 
+				Syntax : 
+				@mixin flexCenter($direction) {
+				    display: flex;
+				    justify-content: center;
+				    flex-direction: $direction;
+				}	
+
+				.main{
+    				@include flexCenter(column);
+    				width: 80%;
+    				margin: 0 auto;
+    				}
+
+    		above will place the the flexCenter code within main as we included it in main. Also defining a variable is optional
+
+    	Mixins could be used for maintaining Light and Dark themes on websites.
+
+    	i. Inheriting properties from predefined style group	
+    			Let's say we styled a class like this -
+    					.main{
+							    @include flexCenter(column);
+							    width: 80%;
+							    margin: 0 auto;
+							    p{
+							        font-style: italic;
+							        font-weight: weight(medium);
+							        &:hover{
+							            color: pink;
+							        }
+							    }
+							}
+				Now if we want to inherit its properties then we can do this 
+						.main_2{
+							@extend .main;
+							margin: 2 auto;
+						}
+
+					All of the properties of .main will be inherited by .main_2 class and only difference is that margin will be different.
+
+		j. Referring to existing tags - use '&'
+
+				p{
+			        font-style: italic;
+			        font-weight: weight(medium);
+			        &:hover{
+			            color: pink;
+			        }
+			    }
+
+			  Here we are saying that we need to add hover parameter on 'p' tag.
+
+
+8. Hyperlinks -
+		a. To scroll to specific point in page
+				<a hred='#id'>
+
+		b. To load a new page and scroll to a specific point
+				<a href='//site.com/#some-id'>
+
+		c. To go to top of the webpage - 
+				<a href='#'>
+				
+		d. To not go anywhere
+				<a href='#!'>

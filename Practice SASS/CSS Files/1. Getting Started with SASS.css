@@ -1,0 +1,25 @@
+* {
+  border: 100px;
+}
+
+.theme {
+  background: white;
+  color: black;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+.main p {
+  font-style: italic;
+  font-weight: 500;
+}
+.main p:hover {
+  color: pink;
+}
+
+/*# sourceMappingURL=1.%20Getting%20Started%20with%20SASS.css.map */

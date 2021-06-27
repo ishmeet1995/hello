@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Style</title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            @media (min-width: 600px) {
+                body{
+                    background-color: red;
+                }
+            }
+            @media (max-width: 599px) {
+                body{
+                    background-color: yellow;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to my Webpage!</h1>
+        <h1>Second Heading</h1>
+        <p>Hello World</p>
+        <div>
+            Hello World in DIV
+        </div>
+        <div id="abcd">You stupid fellow!</div>
+        <script>document.querySelector('div[id="abcd"]').innerHTML = 'Hello you Smarty'</script>
+        <div>
+            <table >
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ishmeet</td>
+                        <td>25</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+         
+            <button>Click me</button>
+            
+        </div>
+        
+    </body>
+</html>

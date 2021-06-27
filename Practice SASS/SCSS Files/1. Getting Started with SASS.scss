@@ -1,0 +1,38 @@
+@import "./resets";
+@import "./variables";
+
+
+@function weight($weightName){
+    @return map-get($font-weights, $weightName)
+}
+
+@mixin theme($light-theme: true) {
+    @if $light-theme{
+        background: lighten($color, $amount: 100%);
+        color: darken($color: $text-color, $amount: 100%);
+        
+    }
+}
+
+.theme{
+    @include theme($light-theme: true)
+}
+
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    flex-direction: $direction;
+}
+
+.main{
+    @include flexCenter(column);
+    width: 80%;
+    margin: 0 auto;
+    p{
+        font-style: italic;
+        font-weight: weight(medium);
+        &:hover{
+            color: pink;
+        }
+    }
+}
